@@ -12,6 +12,6 @@ $kkman = mysql_query($query);
 
 $row = mysql_fetch_row($kkman);
 
-echo $row[0] . " " . $row[1];
+echo $row[1] . "," . $row[2];
 
 ?>

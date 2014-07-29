@@ -15,7 +15,7 @@ $kkman = mysql_query($query);
 $i = 0;
 //0=location_id, 1=lat, 2=long, 3=fake int
 while(($fr = mysql_fetch_row($kkman))) { 
-			
+
 //	echo $fr[0] . ": " . $fr[1] . ", " . $fr[2] ."<br>";
 
 	$url = "https://api.foursquare.com/v2/venues/search?limit=30&ll=" . $fr[1] . "," . $fr[2] . "&client_id=BXTCY4HGTLWINDPRLFXCOWRUEDAJC12ZHEGDTGX4A5DX413K&client_secret=X20DAZW4CXKKC2V1O4QXYYHEQ1T5BMIBHUYD5ZJOVUKGFD3V&v=20140728";
@@ -71,12 +71,24 @@ while(($fr = mysql_fetch_row($kkman))) {
 		} 
 	}
 
-	echo $cateStr . "<br>";
-	echo $distStr;
+//	echo $cateStr . "<br>";
+//	echo $distStr . "<br>";
+
+	$query = "insert into gowalla_data_d20_cate values(" . $fr[0] . ",'" . $cateStr . "','" . $distStr . "')";
+	$r = mysql_query($query);
 
 	break;
+
+	$percent = ((double)($i+1)/88182.0) * 100.0;
+	$query = "update progress set percent =" . $percent . ",amount =" . strval($i+1) . " where id=0";
+	mysql_query($query);
+
 	$i++;
 }
+
+// echo $i; // 88182 
+
+echo "Done.";
 
 ?>
 

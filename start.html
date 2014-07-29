@@ -19,21 +19,27 @@ Progress: <br>
 
 <script>
 
-setInterval(function(){check()}, 1000);
+setInterval(function(){check()}, 500);
 
 function check(){
 	$.get("ReadProgress.php", function(data){ 
 
-		var SP = data.split(" ");
+	//	document.getElementById("done").innerHTML = data;
+
+		var SP = data.split(",");
 
 		document.getElementById("percent").innerHTML = SP[0] + " %";
 		document.getElementById("amount").innerHTML = SP[1] + " counts.";
-})};
+	})
+};
 
 function gogogo() {
+
+	document.getElementById("done").innerHTML = "Processing...";
+
 	$.get("insert_cate.php", function(data) { 
 		document.getElementById("done").innerHTML = data;
-	}
+	})
 };
 
 
