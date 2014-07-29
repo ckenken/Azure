@@ -15,7 +15,7 @@ mysql_select_db("gowalla") or die(mysql_error());;
 
 // $query = "create table progress(id int primary key, percent double, amount int)";
 
-$query = "delete from gowalla_data_d20_cate";
+$query = "select Count(*) from gowalla_data_d20_cate";
 
 // $query = "insert into progress values(0, 0.0, 0)";
 
@@ -25,11 +25,11 @@ $query = "delete from gowalla_data_d20_cate";
 
 $kkman = mysql_query($query);
 
-// $a = mysql_fetch_row($kkman);
+ $a = mysql_fetch_row($kkman);
 
-//var_dump($a); // 353485 
+var_dump($a); // 353485 
 
-var_dump($kkman);
+//var_dump($kkman);
 
 
 ?>
