@@ -7,7 +7,7 @@ require('simple_html_dom.php');
 
 define("API_KEY", "f523e9b5ab873acee5348d4565b18acf");
 
-mysql_connect("adsl.cloudapp.net", "ckenken", "Radsl2014") or die(mysql_error());;
+mysql_connect("localhost:8889", "root", "root") or die(mysql_error());;
 mysql_select_db("gowalla") or die(mysql_error());;
 
 
@@ -42,6 +42,7 @@ while($row = mysql_fetch_row($kkman)) {
 
 	foreach($sxml->photos[0]->photo as $fake => $p) {
 
+
 //		echo $fake . ": ";
 
 //		echo "id: " . $p->attributes()['id'] . "<br>";
@@ -74,18 +75,18 @@ while($row = mysql_fetch_row($kkman)) {
 
 		echo $jpg;
 
-		$query = "insert into gowalla_data_d20_image values(" . $row[0] . ",'" . $jpg . "','')"; 
-		$r = mysql_query($query);
+	//	$query = "insert into gowalla_data_d20_image values(" . $row[0] . ",'" . $jpg . "','')"; 
+	//	$r = mysql_query($query);
 
 		break;   // 暫時只取一張圖
 	}
 
-
-	$percent = ((double)($i+1)/88182.0) * 100.0;
+/*
+	$percent = ((double)($i+1)/84191.0) * 100.0;
 	$query = "update progress2 set percent =" . $percent . ",amount =" . strval($i+1) . " where id=0";
 	mysql_query($query);
-
+*/
 	$i++;
-	//break;
+	break;
 }
 ?>

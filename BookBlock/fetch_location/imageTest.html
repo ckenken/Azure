@@ -1,0 +1,40 @@
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+<input type="button" value="gogogogogogogo" onclick="gogogo()"></input>
+<input id="in" type="text"></input>
+<br>
+<p id="kkman"><p>
+<br>
+
+<img id="pic" name="picture" src="">
+
+<script>
+	
+	var gogogo = function() 
+	{
+		var location_id = document.getElementById("in").value;
+
+    
+
+
+		$.get( "getLatLng.php?location_id=" + location_id).done(function( data ) {
+    		var SP = data.split(",");
+
+        document.getElementById("kkman").innerHTML = SP[0] + "," + SP[1];
+    		
+    		$.get( "getImage.php?lat=" + SP[0]+"&lng=" + SP[1]).done(function( data ) {
+    			
+    			document.getElementById("pic").src = data;
+    			document.getElementById("kkman").innerHTML = data;
+  			});
+
+  		});
+
+	}
+
+</script>
+</body>
+</html>

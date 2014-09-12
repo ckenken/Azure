@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js demo-4">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>BookBlock: A Content Flip Plugin - Demo 4</title>
+		<meta name="description" content="Bookblock: A Content Flip Plugin - Demo 4" />
+		<meta name="keywords" content="javascript, jquery, plugin, css3, flip, page, 3d, booklet, book, perspective" />
+		<meta name="author" content="Codrops" />
+		<link rel="shortcut icon" href="../favicon.ico"> 
+		<link rel="stylesheet" type="text/css" href="css/default.css" />
+		<link rel="stylesheet" type="text/css" href="css/bookblock.css" />
+		<!-- custom demo style -->
+		<link rel="stylesheet" type="text/css" href="css/demo4.css" />
+
+		<style type="text/css">
+			.bb-custom-side{
+				text-align: center;
+			}
+			/* .picture:nth-of-type(1){
+				float: left;
+				margin-left: 2px;
+			} */
+			.picture{
+				position: relative;
+				display: inline-block;
+				width: 20%;
+				transition: all 0.2s;
+			}
+			.picture:hover{
+				width: 30%;
+
+			}
+		</style>
+
+		<script src="js/modernizr.custom.js"></script>
+
+		<script src="js/ckenken_map.js"> </script>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+      <script type="text/javascript" src="http://ecn.dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=7.0"></script>
+
+	<script>
+
+	var jsonData;
+
+	var getJSON = function()
+	{
+		$.get("fetch_location/get_location.php?date=20100731", function(data){ 
+			
+			var obj = JSON.parse(data);	
+
+			for(var i = 0; i<obj.models.length; i++) {
+				createPage(i);
+			}
+			
+			jsonData = data;
+
+			drawMap(data, "myMap0", 0);
+
+//			drawMap2(data, "myMap2", 1);
+			Page.init();
+		})
+	};
+
+	
+
+
+	var map = null; 
+	var pinInfobox = null;        
+
+	function drawMap(json, id, index)
+	{
+	    // Initialize the map
+	    map = new Microsoft.Maps.Map(document.getElementById(id), {credentials:"Arc4CpSMsc36JuXJ-cU8aTqD6aSE3j5dD6Krs9m49l_HESAsFa_SdtNxjgr_mOMK"}); 
+	    // Add a pin to the center of the map
+	    var pin = new Microsoft.Maps.Pushpin(center, {text: '1'}); 
+
+//	    Microsoft.Maps.Events.addHandler(pin, 'click', kkman);
+
+	    obj = JSON.parse(json);
+		
+	    var center = null;
+
+		for(i = 0; i<obj.models[index].length; i++) {
+			var latitude = obj.models[index][i].latitude;
+			var longitude = obj.models[index][i].longitude;
+
+			var loc = new Microsoft.Maps.Location(latitude, longitude);
+	    	center = new Microsoft.Maps.Location(latitude, longitude);
+
+	        var pin = new Microsoft.Maps.Pushpin(loc); 
+	        map.entities.push(pin);	
+		}          
+		console.log(obj.models[index][0].location_id);
+		
+		
+		(function getCates(location_index, location_id) 
+		{
+			var url = "fetch_location/getCates.php?location_id=" + location_id; 
+			$.get(url, function(data) {
+				if( data === "" || !data ){
+					//alert(location_id);
+					if( location_index+1 < obj.models[index].length ){
+						getCates(location_index+1, obj.models[index][location_index+1].location_id.toString());
+					}
+				}
+				else{
+					document.getElementById("label"+index).innerHTML = data;
+				}
+			})
+		})(0, obj.models[index][0].location_id.toString());
+		
+
+		(function getImages(location_index, location_id) 
+		{
+			var url = "fetch_location/getCates.php?location_id=" + location_id; 
+			$.get(url, function(data) {
+				if( data === "" || !data ){
+					//alert(location_id);
+					if( location_index+1 < obj.models[index].length ){
+						getCates(location_index+1, obj.models[index][location_index+1].location_id.toString());
+					}
+				}
+				else{
+					document.getElementById("label"+index).innerHTML = data;
+				}
+			})
+		})(0, obj.models[index][0].location_id.toString());
+		
+		// 
+
+	    // Center the map on the location
+	    map.setView({center: center, zoom: 10});
+
+/*
+	// Add handler for the pushpin click event.
+    Microsoft.Maps.Events.addHandler(pin, 'click', displayInfobox);
+
+    // Hide the infobox when the map is moved.
+    Microsoft.Maps.Events.addHandler(map, 'viewchange', hideInfobox);
+
+
+    Microsoft.Maps.Events.addHandler(pin, 'click', kkman);
+
+    // Add the pushpin and infobox to the map
+    map.entities.push(pin);
+    map.entities.push(pinInfobox);
+*/
+
+	}
+
+/*
+     function kkman(e)
+     {
+     }
+
+     function displayInfobox(e)
+     {
+        pinInfobox.setOptions({ visible:true });
+        if(e.targetType == "pushpin") {
+           document.getElementById('kkman').innerHTML = e.target.getLocation().toString();
+        }
+        
+     }                    
+
+     function hideInfobox(e)
+     {
+        pinInfobox.setOptions({ visible: false });
+     }      
+  */   
+
+
+	</script>
+	</head>
+
+	<body>
+		<style>
+			.loading{
+				position: fixed;
+				top: 25%;
+				left: 30%;
+				width: 25%;
+			}
+		</style>
+		<img src="images/ajax-loader.gif" class="loading" />
+
+		<div class="container">
+			<div class="bb-custom-wrapper">
+				
+				<div id="bb-bookblock" class="bb-bookblock">
+					<!--
+					<div class="bb-item">
+						<div class="bb-custom-side">
+							<p>Jujubes fruitcake tiramisu liquorice chocolate cake. Carrot cake faworki donut soufflé oat cake tootsie roll. Fruitcake fruitcake cake sweet pie jelly beans. Chocolate cake candy jujubes oat cake toffee croissant muffin.</p>
+						</div>
+						<div class="bb-custom-side">
+							<p>Chocolate bar tiramisu marzipan. Croissant soufflé croissant lollipop liquorice dragée chupa chups carrot cake. Liquorice lollipop halvah toffee lollipop.</p>
+						</div>
+					</div>
+					-->
+				</div>
+
+				<nav>
+					<a id="bb-nav-first" href="#" class="bb-custom-icon bb-custom-icon-first">First page</a>
+					<a id="bb-nav-prev" href="#" class="bb-custom-icon bb-custom-icon-arrow-left">Previous</a>
+					<a id="bb-nav-next" href="#" class="bb-custom-icon bb-custom-icon-arrow-right">Next</a>
+					<a id="bb-nav-last" href="#" class="bb-custom-icon bb-custom-icon-last">Last page</a>
+				</nav>
+
+			</div>
+
+		</div><!-- /container -->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<script src="js/jquerypp.custom.js"></script>
+		<script src="js/jquery.bookblock.js"></script>
+		<script>
+			var Page = (function() {
+				
+				var config = {
+						$bookBlock : $( '#bb-bookblock' ),
+						$navNext : $( '#bb-nav-next' ),
+						$navPrev : $( '#bb-nav-prev' ),
+						$navFirst : $( '#bb-nav-first' ),
+						$navLast : $( '#bb-nav-last' )
+					},
+					init = function() {
+						config.$bookBlock.bookblock( {
+							speed : 1000,
+							shadowSides : 0.8,
+							shadowFlip : 0.4,
+							onEndFlip : function(old, page, isLimit){
+							//	GetMap("myMap");
+								var str = "myMap" + (page).toString();
+					//			alert(str);
+								drawMap(jsonData, str, page);
+								
+								return false;
+							}
+						} );
+						initEvents();
+					},
+					initEvents = function() {
+						
+						var $slides = config.$bookBlock.children();
+
+						// add navigation events
+						config.$navNext.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'next' );
+							return false;
+						} );
+
+						config.$navPrev.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'prev' );
+							return false;
+						} );
+
+						config.$navFirst.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'first' );
+							return false;
+						} );
+
+						config.$navLast.on( 'click touchstart', function() {
+							config.$bookBlock.bookblock( 'last' );
+							return false;
+						} );
+						
+						// add swipe events
+						$slides.on( {
+							'swipeleft' : function( event ) {
+								config.$bookBlock.bookblock( 'next' );
+								return false;
+							},
+							'swiperight' : function( event ) {
+								config.$bookBlock.bookblock( 'prev' );
+								return false;
+							}
+						} );
+
+						// add keyboard events
+						$( document ).keydown( function(e) {
+							var keyCode = e.keyCode || e.which,
+								arrow = {
+									left : 37,
+									up : 38,
+									right : 39,
+									down : 40
+								};
+
+							switch (keyCode) {
+								case arrow.left:
+
+
+									config.$bookBlock.bookblock( 'prev' );
+									break;
+								case arrow.right:
+									config.$bookBlock.bookblock( 'next' );
+													
+								
+									break;
+							}
+						} );
+					};
+
+					return { init : init };
+
+			})();
+		</script>
+		<script>
+				getJSON();		
+				
+				//GetMap("myMap");
+
+				
+
+		</script>
+	</body>
+</html>

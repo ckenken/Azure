@@ -1,0 +1,50 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+
+<title>開始搜集地標吧！！</title>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body>
+<input id="demo" type="button" value="gogogo" onclick="gogogo()"></input><br>
+
+Progress: <br>
+
+<p id="percent"></p>
+<p id="amount"></p><br>
+<p id="done"></p>
+
+
+<script>
+
+setInterval(function(){check()}, 500);
+
+function check(){
+	$.get("ReadProgress.php", function(data){ 
+
+	//	document.getElementById("done").innerHTML = data;
+
+		var SP = data.split(",");
+
+		document.getElementById("percent").innerHTML = SP[0] + " %";
+		document.getElementById("amount").innerHTML = SP[1] + " counts.";
+	})
+};
+
+function gogogo() {
+
+	document.getElementById("done").innerHTML = "Processing...";
+
+	var SP2 = document.getElementById("amount").innerHTML.split(" ");
+
+	$.get("insert_cate.php?gap=" + SP2[0], function(data) { 
+		document.getElementById("done").innerHTML = data;
+	})
+};
+
+
+</script>
+</body>
+</html>
