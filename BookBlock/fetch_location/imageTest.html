@@ -27,7 +27,7 @@
 
         document.getElementById("kkman").innerHTML = SP[0] + "," + SP[1];
     		
-    		$.get( "getImage.php?lat=" + SP[0]+"&lng=" + SP[1]).done(function( data ) {
+    		$.get( "getImage.php?location_id=" + location_id).done(function( data ) {
     			
     			document.getElementById("pic").src = data;
     			document.getElementById("kkman").innerHTML = data;
