@@ -2,18 +2,36 @@
 	require('http_functions.php');
 	require('simple_html_dom.php');
 
+	$locaiton_id = $_GET["location_id"];
+
 	$lat = "";
 	$lng = "";
 	$name = "";
-
+/*
 	$lat = $_GET["lat"];
 	$lng = $_GET["lng"];
 	$name = $_GET["name"];
-
+*/
 	define("API_KEY", "f523e9b5ab873acee5348d4565b18acf");
 
 	mysql_connect("localhost", "root", "") or die(mysql_error());;
 	mysql_select_db("gowalla") or die(mysql_error());;
+
+	$url = "getLatLng.php?location_id=" + $location_id;
+
+	$latlng = httpGet($url);
+
+	$SP = explode(",", $latlng);
+	$lat = $SP[0];
+	$lng = $SP[1];
+
+	$url = "getNames.php?location_id=" + $location_id;
+
+	$names = httpGet($url);
+
+	$SP = explode(",", $names);
+
+	$name = $SP[0];
 
 	if(strlen($lat) == 0) {
 		$url = "http://flickr.com/services/rest/?method=flickr.photos.search&api_key=" . API_KEY . "&perpage=5&page=10&text=" . $name;

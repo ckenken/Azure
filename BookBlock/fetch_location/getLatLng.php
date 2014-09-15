@@ -12,7 +12,6 @@
 	$result = mysql_query($query);
 
 	$fr = mysql_fetch_row($result);
-	// 0 = location_id, 1 = cates, 2= distance
 
 	echo $fr[0] . "," . $fr[1];
 

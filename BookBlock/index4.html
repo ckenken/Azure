@@ -114,22 +114,17 @@
 		})(0, obj.models[index][0].location_id.toString());
 		
 
-		(function getImages(location_index, location_id) 
-		{
-			var url = "fetch_location/getCates.php?location_id=" + location_id; 
-			$.get(url, function(data) {
-				if( data === "" || !data ){
-					//alert(location_id);
-					if( location_index+1 < obj.models[index].length ){
-						getCates(location_index+1, obj.models[index][location_index+1].location_id.toString());
-					}
-				}
-				else{
-					document.getElementById("label"+index).innerHTML = data;
-				}
-			})
-		})(0, obj.models[index][0].location_id.toString());
+		 
+		//(0, obj.models[index][0].location_id.toString());
 		
+		for(var i = 0; i<3; i++) {
+			var imgP = document.getElementById("label" + index + "jpg");
+
+		    var images = imgP.querySelectorAll('[name=picture]');
+
+		    images[i].src = getImage(obj.models[index][i].location_id.toString());
+		}
+
 		// 
 
 	    // Center the map on the location
@@ -151,6 +146,32 @@
 */
 
 	}
+
+	var getImage = function(location_id) {
+		//var url = "fetch_location/getImgae.php?location_id=" + location_id; 
+		var url = "fetch_location/getImage.php?location_id=" + location_id;
+
+		$.get(url, function(data) {
+			
+			return data;
+
+
+			/*
+			if( data === "" || !data ){
+				//alert(location_id);
+				if( location_index+1 < obj.models[index].length ){
+					getCates(location_index+1, obj.models[index][location_index+1].location_id.toString());
+				}
+			}
+			else{
+				document.getElementById("label"+index).innerHTML = data;
+			}
+			*/
+		})
+	}
+
+
+
 
 /*
      function kkman(e)
