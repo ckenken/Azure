@@ -19,7 +19,7 @@
 	mysql_connect("localhost", "root", "") or die(mysql_error());;
 	mysql_select_db("gowalla") or die(mysql_error());;
 
-	$url = "http://adsl2.cloudapp.net:8081/azure/Bookblock/fetch_location/getLatLng.php?location_id=" + $location_id;
+	$url = "http://localhost:8081/azure/Bookblock/fetch_location/getLatLng.php?location_id=" . $location_id;
 
 	$latlng = httpGet($url);
 
@@ -31,7 +31,7 @@
 	$lat = $SP[0];
 	$lng = $SP[1];
 
-	$url = "http://adsl2.cloudapp.net:8081/azure/Bookblock/fetch_location/getNames.php?location_id=" + $location_id;
+	$url = "http://localhost:8081/azure/Bookblock/fetch_location/getNames.php?location_id=" . $location_id;
 
 	$names = httpGet($url);
 
