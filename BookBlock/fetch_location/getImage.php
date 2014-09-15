@@ -12,7 +12,7 @@
 
 	define("API_KEY", "f523e9b5ab873acee5348d4565b18acf");
 
-	mysql_connect("localhost:8889", "root", "root") or die(mysql_error());;
+	mysql_connect("localhost", "root", "") or die(mysql_error());;
 	mysql_select_db("gowalla") or die(mysql_error());;
 
 	if(strlen($lat) == 0) {

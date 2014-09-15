@@ -4,7 +4,7 @@
 
 	$date = $_GET["date"];
 
-	mysql_connect("localhost:8899", "root", "root") or die(mysql_error());;
+	mysql_connect("localhost", "root", "") or die(mysql_error());;
 	mysql_select_db("gowalla") or die(mysql_error());;
 
 	$all;  // 準備用來裝整個輸出用的 json

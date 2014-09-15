@@ -5,9 +5,9 @@
 require('http_functions.php');
 require('category.php');
 
-$gap = $_GET["gap"];
+//$gap = $_GET["gap"];
 
-mysql_connect("localhost:8889", "root", "root") or die(mysql_error());;
+mysql_connect("localhost", "root", "") or die(mysql_error());;
 mysql_select_db("gowalla") or die(mysql_error());;
 
 $query = "select location_id, latitude, longitude, count(distinct location_id) from gowalla_data_d20 group by location_id";
@@ -17,12 +17,12 @@ $kkman = mysql_query($query);
 $i = 0;
 //0=location_id, 1=lat, 2=long, 3=fake int
 while(($fr = mysql_fetch_row($kkman))) { 
-	
+/*	
 	if($i < strval($gap)) {
-		$i++;
+	$i++;
 		continue;
 	}
-
+*/
 
 //	echo $fr[0] . ": " . $fr[1] . ", " . $fr[2] ."<br>";
 

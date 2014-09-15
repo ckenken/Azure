@@ -2,7 +2,7 @@
 
 	$location_id = $_GET["location_id"];
 
-	mysql_connect("localhost:8889", "root", "root") or die(mysql_error());;
+	mysql_connect("localhost", "root", "") or die(mysql_error());;
 	mysql_select_db("gowalla") or die(mysql_error());;
 
 	$query = "select * from gowalla_data_d20_cate where location_id=" . $location_id;

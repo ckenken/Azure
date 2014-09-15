@@ -39,7 +39,7 @@ function gogogo() {
 
 	var SP2 = document.getElementById("amount").innerHTML.split(" ");
 
-	$.get("insert_cate.php?gap=" + SP2[0], function(data) { 
+	$.get("insert_cate.php", function(data) { 
 		document.getElementById("done").innerHTML = data;
 	})
 };

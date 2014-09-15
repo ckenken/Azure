@@ -1,7 +1,7 @@
 <?php
 
 
-mysql_connect("localhost:8889", "root", "root") or die(mysql_error());;
+mysql_connect("localhost", "root", "") or die(mysql_error());;
 mysql_select_db("gowalla") or die(mysql_error());;
 
 //$query = "insert into progress values(0.0,0)";
