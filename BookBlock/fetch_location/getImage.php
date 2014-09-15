@@ -4,8 +4,6 @@
 
 	$location_id = $_GET["location_id"];
 
-	var_dump($location_id);
-
 	$lat = "";
 	$lng = "";
 	$name = "";
