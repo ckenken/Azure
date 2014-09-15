@@ -45,7 +45,7 @@ function createPage(pageNumber) {
 	img2.alt="building";
 	img3.alt="building";
 
-	img1.name = "picture";
+	img.name = "picture";
 	img2.name = "picture";
 	img3.name = "picture";
 
