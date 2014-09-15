@@ -43,7 +43,9 @@
 
 //		echo "id: " . $p->attributes()['id'] . "<br>";
 
-		$id = $p->attributes()['id'];
+		$attrs = $p->attributes();
+
+		$id = $attrs['id'];
 
 		$url = "http://flickr.com/services/rest/?method=flickr.photos.getinfo&api_key=" . API_KEY . "&photo_id=" . $id;
 
