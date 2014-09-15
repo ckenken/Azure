@@ -151,32 +151,40 @@
 		var imgP = document.getElementById("label" + index + "jpg");
 		var images = imgP.querySelectorAll('[name=picture]');
 			
-		for(var i = 0; i<three_location.length; i++) {
-			console.log(three_location);
-			var location_id = three_location[i];
-			var url = "fetch_location/getImage.php?location_id=" + location_id;
+		var url = "fetch_location/getImage.php/location_ids=" + three_location[0] + "," + three_location[1] + "," + three_location[2];	
 
-			$.get(url, function(data) {
-				console.log("location:" + three_location[i]);
-				console.log("data = " + data);
-				console.log("i= " + i);
-				if(typeof(data) !== "undefined") {
-					images[i].src = data;
+		$.get(url, function(data) {
+			
+			console.log("data = " + data);
+			
+			if(typeof(data) !== "undefined") {
+				
+				var SP = data.toString().split(",");
+
+				if(SP[0] !== "")
+					images[0].src = SP[0];
+
+				if(SP[1] !== "")
+					images[1].src = SP[1];
+
+				if(SP[2] !== "")
+					images[2].src = SP[2];
+			}
+			
+			/*
+			if( data === "" || !data ){
+				//alert(location_id);
+				if( location_index+1 < obj.models[index].length ){
+					getCates(location_index+1, obj.models[index][location_index+1].location_id.toString());
 				}
-				/*
-				if( data === "" || !data ){
-					//alert(location_id);
-					if( location_index+1 < obj.models[index].length ){
-						getCates(location_index+1, obj.models[index][location_index+1].location_id.toString());
-					}
-				}
-				else{
-					document.getElementById("label"+index).innerHTML = data;
-				}
-				*/
-			});
-			//break;
-		}
+			}
+			else{
+				document.getElementById("label"+index).innerHTML = data;
+			}
+			*/
+		});
+		
+		
 	}
 
 
