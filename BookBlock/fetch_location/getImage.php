@@ -2,7 +2,7 @@
 	require('http_functions.php');
 	require('simple_html_dom.php');
 
-	$locaiton_id = $_GET["location_id"];
+	$location_id = $_GET["location_id"];
 
 	var_dump($location_id);
 
