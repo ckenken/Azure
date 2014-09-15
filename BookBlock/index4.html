@@ -151,7 +151,7 @@
 		var imgP = document.getElementById("label" + index + "jpg");
 		var images = imgP.querySelectorAll('[name=picture]');
 			
-		var url = "fetch_location/getImage.php/location_ids=" + three_location[0] + "," + three_location[1] + "," + three_location[2];	
+		var url = "fetch_location/getThreePic.php?location_ids=" + three_location[0] + "," + three_location[1] + "," + three_location[2];	
 
 		$.get(url, function(data) {
 			

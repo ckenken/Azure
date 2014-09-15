@@ -13,15 +13,15 @@
 
 //	$url = "http://localhost:8081/azure/Bookblock/fetch_location/getLatLng.php?location_id=" . $location_id;
 
-	$url = "fetch_location/getImage.php?location_id=" . $SP[0];
+	$url = "http://localhost:8081/azure/Bookblock/fetch_location/getImage.php?location_id=" . $SP[0];
 
 	$pic1 = httpGet($url);
 
-	$url = "fetch_location/getImage.php?location_id=" . $SP[1];
+	$url = "http://localhost:8081/azure/Bookblock/fetch_location/getImage.php?location_id=" . $SP[1];
 
 	$pic2 = httpGet($url);
 
-	$url = "fetch_location/getImage.php?location_id=" . $SP[2];
+	$url = "http://localhost:8081/azure/Bookblock/fetch_location/getImage.php?location_id=" . $SP[2];
 
 	$pic3 = httpGet($url);
 
