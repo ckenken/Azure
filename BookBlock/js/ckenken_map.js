@@ -23,8 +23,8 @@ function createPage(pageNumber) {
 	labels.id = "label" + pageNumber.toString();
 	labels.innerHTML = "";  // 12345
  
-	var br1 = document.createElement("br");
-	var br2 = document.createElement("br");
+//	var br1 = document.createElement("br");
+//	var br2 = document.createElement("br");
 
 	var images = document.createElement("p");
 	images.id = "label" + pageNumber.toString() + "jpg";
