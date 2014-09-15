@@ -27,7 +27,7 @@ function createPage(pageNumber) {
 	var br2 = document.createElement("br");
 
 	var images = document.createElement("p");
-	images.id = "label" + pageNumber.toString() + jpg;
+	images.id = "label" + pageNumber.toString() + "jpg";
 
 	var img = document.createElement("img");
 	var img2 = document.createElement("img");
