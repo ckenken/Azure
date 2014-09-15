@@ -21,6 +21,10 @@
 
 	$latlng = httpGet($url);
 
+	var_dump($latlng);
+
+	echo "<br>";
+
 	$SP = explode(",", $latlng);
 	$lat = $SP[0];
 	$lng = $SP[1];
@@ -28,6 +32,10 @@
 	$url = "getNames.php?location_id=" + $location_id;
 
 	$names = httpGet($url);
+
+	echo "<br>";
+
+	var_dump($names);
 
 	$SP = explode(",", $names);
 
