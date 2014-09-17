@@ -17,7 +17,20 @@ function createPage(pageNumber) {
 	map.style.height = "600px";
 	map.style.margin = "auto";
 
+	var select = document.createElement("select");
+	var option = document.createElement("option");
+	option.innerHTML = "2013/07/28";
+	option.value = "2013/07/28";
+
+	var jump = document.createElement("input");
+	jump.type = "button";
+	jump.value= "JUMP";
+
+	select.appendChild(option);
+
 	bb_custom_side.appendChild(map);
+	bb_custom_side.appendChild(select);
+	bb_custom_side.appendChild(jump);
 
 	var labels = document.createElement("p");
 	labels.id = "label" + pageNumber.toString();
