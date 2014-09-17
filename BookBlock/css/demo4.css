@@ -27,7 +27,7 @@
 	width: 50%;
 	float: left;
 	height: 100%;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	/* Centering with flexbox */
 	/*
 	display: -webkit-box;
@@ -91,7 +91,7 @@
 }
 
 .bb-custom-side p {
-	padding: 8%;
+	padding: 5%;
 	font-size: 1.8em;
 	font-weight: 300;
 }
