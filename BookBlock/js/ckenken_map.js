@@ -17,6 +17,7 @@ function createPage(pageNumber) {
 	map.style.height = "600px";
 	map.style.margin = "auto";
 
+	var p = document.createElement("p");
 	var select = document.createElement("select");
 	var option = document.createElement("option");
 	option.innerHTML = "2013/07/28";
@@ -28,9 +29,11 @@ function createPage(pageNumber) {
 
 	select.appendChild(option);
 
+	p.appendChild(select);
+	p.appendChild(jump);
+
 	bb_custom_side.appendChild(map);
-	bb_custom_side.appendChild(select);
-	bb_custom_side.appendChild(jump);
+	bb_custom_side.appendChild(p);
 
 	var labels = document.createElement("p");
 	labels.id = "label" + pageNumber.toString();
