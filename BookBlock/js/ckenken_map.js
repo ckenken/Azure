@@ -20,8 +20,8 @@ function createPage(pageNumber) {
 	var p = document.createElement("p");
 	var select = document.createElement("select");
 	var option = document.createElement("option");
-	option.innerHTML = "2013/07/28";
-	option.value = "2013/07/28";
+	option.innerHTML = "2010/07/31";
+	option.value = "2010/07/31";
 
 	var jump = document.createElement("input");
 	jump.type = "button";
