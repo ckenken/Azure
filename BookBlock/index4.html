@@ -108,7 +108,7 @@
 
 		var locations_json = JSON.stringify(locations);
 
-		$.post("labelCounter.php", locations_json)
+		$.post("fetch_location/labelCounter.php", locations_json)
 		.done( function(data){
 			console.log(data);
 		}); 
