@@ -100,6 +100,19 @@
 		}          
 		console.log(obj.models[index][0].location_id.toString());
 		
+		var locations = [];
+
+		for(i = 0; i<obj.models[index].length; i++) {
+			locations[i] = obj.models[index][i].location_id.toString();
+		}
+
+		var locations_json = JSON.stringify(locations);
+
+		$.post("labelCounter.php", locations_json)
+		.done( function(data){
+			console.log(data);
+		}); 
+
 		
 		(function getCates(location_index, location_id) 
 		{
